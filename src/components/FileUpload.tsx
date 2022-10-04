@@ -1,17 +1,18 @@
-import { useCallback, useState } from "react"
+import { useCallback } from "react";
+import { useDispatch } from 'react-redux';
 import { useDropzone, FileRejection } from "react-dropzone"
 import { UploadableFile } from "../interfaces/UploadableFile";
-import { SingleFile } from "./SingleFile";
+import { setFiles } from "../store/features/files/filesSlice";
 
 export const FileUpload = () => {
-    const [files, setFiles] = useState<UploadableFile[]>([])
+    const dispatch = useDispatch();
 
     const onDrop = useCallback((accFiles: File[], rejFiles: FileRejection[]) => {
         const tempFiles: UploadableFile[] = accFiles.map(file => ({ file, errors: [] }));
-        setFiles(current => [...current, ...tempFiles, ...rejFiles]);
-    }, []);
+        dispatch(setFiles([...tempFiles, ...rejFiles]))
+    }, [dispatch]);
 
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, accept: { 'applicaion/xml': [], 'text/xml': [] } })
+    const { getRootProps, getInputProps } = useDropzone({ onDrop, accept: { 'applicaion/xml': [], 'text/xml': [] } })
 
     return (
         <div className="p-5 duration-300 bg-white border border-dashed border-slate-300 hover:border-blue-600 hover:cursor-pointer ">
@@ -23,12 +24,6 @@ export const FileUpload = () => {
                     </svg>
                     <p className="uppercase font-bold mb-3">drag and drop here</p>
                 </div>
-
-                {/* {
-                    isDragActive ?
-                        <p>Drop the files here...</p> :
-                        <p>Drag and drop some files here, or click to select files</p>
-                } */}
 
                 <p>Drag and drop your files or <span className="text-blue-400">browse</span> from the computer</p>
                 <p className="text-sm text-slate-500 italic my-1">(Only *.xml files will be accepted)</p>

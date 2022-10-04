@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { parseString } from "xml2js";
 import { JSONTree } from 'react-json-tree';
+import { UploadableFile } from "../interfaces/UploadableFile";
 
 interface SingleFileProps {
-    file: File;
+    file: UploadableFile;
 }
 
 export const SingleFile = ({ file }: SingleFileProps) => {
@@ -11,16 +12,16 @@ export const SingleFile = ({ file }: SingleFileProps) => {
 
     useEffect(() => {
         const reader = new FileReader();
-        reader.readAsText(file);
+        reader.readAsText(file.file);
         reader.onload = (event) => {
             parseString(String(reader.result), (error, data) => {
                 setView(data);
             });
         };
     }, [view, file])
-    return <div>
+    return file.errors?.length === 0 ? <div>
         <JSONTree data={view} labelRenderer={raw => <strong>{raw}</strong>}
             valueRenderer={raw => <span>{raw}</span>}
         />
-    </div>
+    </div> : <div>Unable to read file</div>
 }
