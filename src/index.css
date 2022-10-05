@@ -15,3 +15,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@keyframes type {
+  from {
+    box-shadow: inset -3px 0px 0px #475569;
+  }
+
+  to {
+    box-shadow: inset -3px 0px 0px transparent;
+  }
+}

@@ -4,6 +4,12 @@ import { useDropzone, FileRejection } from "react-dropzone"
 import { UploadableFile } from "../interfaces/UploadableFile";
 import { setFiles } from "../store/features/files/filesSlice";
 
+/**
+ * File Upload component
+ * This component is responsible to handle the upload of a file.
+ * When the user drag's and drop file(s), an action is dispatched and updates the state with the file(s).
+ * @returns The FileUpload component
+ */
 export const FileUpload = () => {
     const dispatch = useDispatch();
 

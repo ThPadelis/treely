@@ -4,7 +4,12 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        'type': 'type .5s alternate infinite',
+      }
+
+    },
   },
   plugins: [],
 }

@@ -3,6 +3,12 @@ import { UploadableFile } from "../interfaces/UploadableFile";
 import { RootState } from "../store";
 import { cleanFiles, setSelected } from "../store/features/files/filesSlice";
 
+/**
+ * File selection component
+ * This component is responsible to handle the selection of a file.
+ * When the user clicks on a file, an action is dispatched and updates the state with the current file.
+ * @returns The FileSelection component
+ */
 export const FileSelection = () => {
     const { selectedFile, files } = useSelector((state: RootState) => state.files);
     const dispatch = useDispatch();

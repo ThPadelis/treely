@@ -28,7 +28,12 @@ const theme = {
     base0F: '#a3685a'
 };
 
-
+/**
+ * Single file component
+ * This component is responsible to preview the currently selected item.
+ * When the user clicks on a file in the FileSelection component it becomes the current file that will be previewed by this component.
+ * @returns The SingleFile component
+ */
 export const SingleFile = ({ file }: SingleFileProps) => {
     const [view, setView] = useState<any>();
     const { file: actFile, errors } = file;
