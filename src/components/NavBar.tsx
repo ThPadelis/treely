@@ -5,11 +5,7 @@ import { NavItem } from "../interfaces/NavItem"
 export const NavBar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const navItems: NavItem[] = [
-        { to: "/about", text: "About" },
-        { to: "/features", text: "Features" },
-        { to: "/pricing", text: "Pricing" },
-    ];
+    const navItems: NavItem[] = [];
 
     const toggleMenu = () => {
         setIsOpen(!isOpen)
@@ -19,7 +15,7 @@ export const NavBar = () => {
         <div className="container mx-auto">
             <div className="flex items-center justify-between font-semibold px-4 lg:px-2">
                 {/* Brand */}
-                <Link to="/" className="py-3">Pantelis Theodosiou</Link>
+                <Link to="/" className="py-3">Treely</Link>
 
                 {/* Primary menu */}
                 <ul className="hidden md:flex items-center gap-1">
